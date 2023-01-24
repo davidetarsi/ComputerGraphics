@@ -1,0 +1,2 @@
+Se ci sono problemi nella renderizzazione del gioco, si consiglia di cancellare la chache e ricaricare la pagine.
+Per i testi sul funzionamento del gioco e l'interfaccia della pagine sono stati usati Google Chrome e la sua versione mobile su Google Pixel 5.

@@ -1,0 +1,295 @@
+
+<!doctype html>
+<html>
+	<head>
+		<title>Make URSS great again!</title>
+		<style>
+			h1 {
+				color: rgb(190, 6, 18);
+				font-size: 50px;
+			}
+			h1, h2, h3 {
+				position: relative;
+				text-align: center;
+				color: rgb(190, 6, 18);
+			}
+			p, ul, li {
+				margin-left: 20px;
+				margin-right: 20px;
+				font-size: 21px;
+			}
+			body {
+			  background-color: rgb(34, 34, 34);
+              color: rgb(235, 232, 232);
+			  line-height: 1.4;
+			}
+			div {
+				width:100%;
+				display: flex;
+				justify-content: center;
+				font-size: 21px;
+			}
+			img {
+				margin: 5px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h1>Make URSS great again!</h1>
+		<h2>Progetto di esame per il corso di Fondamenti di Computer Graphics</h2>
+		<h3>Davide Tarsi, matricola 1060959</h3>
+		
+		<div>
+			<img src="images/Introduzione.png" height="400" >
+		</div>
+		
+		<br>
+		<h2>Introduzione </h2>
+		<p>
+			Quando la minaccia del Covid-19 sembrava ormai superata, a sconvolgere le vite e le economie europee &egrave; arrivata l'invasione 
+			Russa dell'Ucraina, iniziata nel febbraio 2022. Quando ancora gli strascichi della recente pandemia erano ancora visibili nella
+			quotidianit&agrave; di tutti, un altra preoccupazione si &egrave; affacciata alle porte dell'Unione Europea. <br>Politologi, economisti e sociologi
+			hanno cominciato a chiedersi il perch&egrave; di questa scelta, forse azzardata, del presidente russo Vladimir Putin, senza trovare un 
+			vero punto di accordo comune. Ma col passare del tempo il suo obiettivo si &egrave; mostrato sempre pi&ugrave; chiaro agli occhi di tutti:
+			voler ricreare l'Unione Sovietica! In questa simulazione sar&agrave; possibile perseguire questa volont&agrave;, per tornare grandi come ai tempi
+			di Gorbacev e le Soyuz.
+			</br>
+			
+		</p>
+		<p>
+			Lo scopo del gioco &egrave; di conquistare le bandiere degli ex paesi satellite dell'Unione Sovietica spostandosi con il carro armato
+			nella mappa di gioco. Le bandiere da conquistare sono tre (quella bielorussa, quella ucraina e quella kazaka) e non saranno tutte e 
+			tre visibili contemporaneamente: ad ogni conquista infatti la bandiera successiva verr&agrave; generata e posizionata in maniera casuale 
+			nella scena di gioco. Per conquistare una bandiera &egrave; sufficiente passarci sopra con il carro armato dato in dotazione. <br>
+			Ma attenzione! Ci sono anche bandiere da evitare, che se catturate portano in automatico alla morte, 
+			in quanto okay l'Ucraina, ma un paese NATO no eh!. La scena inoltre sar&agrave; arricchita anche da alcuni edifici per rendere 
+			pi&ugrave; difficile la raccolta delle bandiere e in ultimo, bisogna anche stare attenti a non uscire dalla plancia di gioco,
+			cosa che comporterebbe la morte (e l'abbandono di ogni sogno di rinascita dell'Unione Sovietica).
+		</br>
+		</p>
+		<br>
+		<br>
+		<h2>Ambiente di gioco</h2>
+		
+		<div>
+			<img src="images/map2.jpg" height="300" >
+			<img src="images/Ambiente.png" height="300" >
+		
+		</div>
+		<br>
+		<p>
+			Per realizzare l'ambientazione si &egrave; partito dalla creazione della mappa di gioco, che risulta essere un piano su cui
+			&egrave; stata applicata una texture che ricorda le ambientazioni di giochi di ruolo fantasy o del famoso gioco Risiko. <br>
+		</p>
+		<p>
+			Successivamente, al piano di gioco sono stati aggiunti degli oggetti obj wavefront che rappresentano degli edifici,
+			alcuni dei quali che richiamano alla rinascita della Russia post caduta del muro di Berlino e al suo avvicinamento
+			agli standard architettonici occidentali, altri invece che richiamano alla vecchia Russia sovietica, con i suoi edifici
+			essenziali e spartani. </br>
+		</p>
+		<p>
+			Sono state poi applicate delle texture ad ogni oggetto, per rendere il tutto pi&ugrave; realistico, 
+			nonostante comunque per ottenere il massimo del realismo si sarebbero dovute applicare numerose texture ad ogni oggetto,
+			cosa non fatta per mantenere la semplicit&agrave; a scapito della resa. <br>
+			In seguito, sono stati aggiunti altri due oggetti obj wavefront, opportunamente texturati, per creare la plancia di gioco
+			tridimensionale e un ideale tavolo su cui essa &egrave; appoggiata, di dimensioni maggiori.
+			Infine, &egrave; stato creato un cubo che delimitasse lo spazio attorno al tavolo e desse dei limiti spaziali alla scena, poi 
+			corredato da una texture che ricorda il cielo. </br>
+
+
+		</p>
+		<br>
+		<br>
+		<h2>Oggetti e mesh 3D</h2>
+		<div>
+			<img src="images/Carro.png" height="250" >
+			<img src="images/Bandiera.png" height="250" >
+			<img src="images/Casa.png" height="250" >
+
+		</div>
+		<br>
+		<p>
+			Nella scena sono presenti diversi oggetti che interagiscono tra di loro. Essi sono importati da file obj wavefront,
+			reperiti principalmente online e modificati opportunamente per poter essere usati nel gioco. La modifica principale che &egrave;
+			stata effettuata via Blender agli oggetti obj &egrave; stata quella legata all'origine degli stessi, spesso non centrata oppure 
+			non centrata rispetto alla nuova configurazione dell'oggetto, alleggerito da elementi superflui, come ad esempio nel caso
+			del carro armato. <br>
+		</p>
+		<p>
+			Infatti, nel gioco si impersonifica un carro amrato t-90 (di produzione russa dal 1993), il cui modello 
+			pi&ugrave; fedele reperibile online presentava nello stesso file obj wavefront tre istanze diverse dello stesso carro armato, ognuna
+			con una diversa texture a disposizione in base allo scenario di utilizzo dello stesso, e che aveva l'origine centrata
+			sulla punta della torretta. Per poterlo utilizzare nel gioco, &egrave; stato necessario eliminare le due istanze superflue e
+			centrare l'origine dell'oggetto sulla base del carro armato, in modo da poterlo posizionare in maniera corretta nella scena. <br>
+		</p>
+		<p>
+			Una procedura simile poi &egrave; stata seguita per poter posizionare correttamente le bandiere e gli edifici nella scena.
+			Infine, questi oggetti vengono importati nel gioco attraverso la funzione <i>loadDoc</i> presente nella cartella <i>utils.js</i>.
+			I loro buffer vengono poi caricati nell'array <i>objectsToDraw</i> dalla funzione <i>loadAllModels</i> nel file
+			<i>objectLoader.js</i> assieme alle informazioni sulla texture da applicare, per poi essere disegnati dalle varie funzioni 
+			<i>draw</i> presenti nel file <i>ObjectDrawer.js</i> e dalla funzione <i>drawScene</i> presente in <i>main.js</i>.
+		</p>
+		<br>
+		<br>
+		<h2> Texture</h2>
+
+		<div>
+			<img src="images\Texture1.png" height="200" >
+			<img src="images\Texture2.png" height="200" >
+			<img src="images\Texture3.png" height="200" >
+		</div>
+		<br>
+		<p>
+			Ad ogni oggetto della scena viene applicata una texture, per rendere la resa pi&ugrave; realistica. Esse vengono caricate nell'array
+			<i>textures</i> attraverso la funzione <i>loadTextures</i> presente in <i>utils.js</i> e poi caricate in <i>objectsToDraw</i> 
+			assieme alle mesh degli oggetti. Le texture vengono cos&igrave; applicate agli oggetti seguendo la tecnica cosiddetta "mipmap" 
+			o attraverso dei parametri di default se non adatte a seguire tale tecnica. <br>
+		</p>
+		<p>
+			Nel dettaglio, la texture del carro armato risulta essere la vera mimetica del veicolo quando utilizzato in ambienti con 
+			scarsa vegetazione, mentre quella delle bandiere &egrave; semplicemente l'immagine della bandiera dello stato di riferimento. 
+			Inoltre, le texture degli edifici sono stati scelti per ricordare degli edifici della Russia degli anni 2000. <br>
+			Infine, la texture con l'immmagine dell'autore del progetto &egrave; stata applicata ad un piano posto in corrispondenza 
+			del muro dell'edificio pi&ugrave; basso della scena, come fosse un graffito su tale muro.
+
+
+		</p>
+		<br>
+		<br>
+		<h2>Illuminazione</h2>
+		
+		<div>
+			<img src="images/Illuminazione1.png" height="200" >
+			<img src="images/Illuminazione2.png" height="200" >
+			<img src="images/Illuminazione3.png" height="200" >
+		</div>
+		<br>
+		<p>	
+			Per l'illuminazione della scena &egrave; stata posta una luce in alto rispetto alla plancia di gioco, cos&igrave; da simulare 
+			un eventuale sole. La luce poi si pu&ograve; spostare grazie agli slider per ottenere, attraverso le coordinate di 
+			profondit&agrave; immagazzinate nel <i>depth buffer</i>, diversi effetti e diverse illuminazioni di scena e oggetti 
+			in base alla direzione della stessa.
+			
+			
+		</p>
+		<br>
+		<br>
+		<h2>Movimento</h2>
+		
+		<div>
+			<img src="images/TextureCarro.png" height="200" >
+			<img src="images/TextureCarro2.png" height="200" >
+			<img src="images/fotomia4.jpeg" height="200" >
+		
+		</div>
+		<br>
+		<p>	
+
+			Nella scena tutti gli oggetti renderizzati sono statici, tranne uno: il carro armato. La renderizzazione non prevede i cingoli
+			che si muovano assieme al carro armato, che invece si muove come un unico oggetto. Per far si che si possa spostare nella scena
+			nel file <i>tankLogic</i> sono presenti le logiche per l'interazione con la fisica e il conseguent movimento, prese dal file
+			presentato a lezione <i>cg-car2.js</i>. <br>
+		</p>
+		<p>
+			Nel file <i>flagLogic</i> invece sono presenti le logiche di interazione del carro armato
+			con le bandiere, per la cattura delle stesse e la eventuale morte se in contatto con una bandiera nemica. Queste logiche sono basate 
+			sulle coordinate dell'origine del carro armato e delle bandiere, che vengono confrontate per determinare se il carro armato
+			ha catturato la bandiera o meno. Allo stesso modo, nel file <i>tankLogic</i> sono presenti le logiche di controllo tra coordinate
+			per verificare che il carro armato sia ancora nell'area di gioco.
+
+
+		</p>
+		<br>
+		<br>
+		<h2>Interazione dell'utente con l'interfaccia</h2>
+		<br>
+		<p>
+			L'utente pu&ograve; interagire con l'interfaccia sia da desktop che da mobile, e in base al dispositivo usato essa si 
+			ha caratteristiche differenti. In linea generale per&ograve;, essa &egrave; composta da un canvas dentro il quale viene renderizzato il
+			campo da gioco e dei tasti di lato per poter interagire con le dinamiche del gioco. Inoltre, il movimento del carro armato 
+			o della telecamera si pu&ograve; effettuare usando: 
+		</p>	
+			<ul>
+				<li>La tastiera</li>
+				<li>Il mouse</li>
+				<li>Il touchscreen (se mobile)</li>
+			</ul>
+		<br>
+		<h3>Versione Desktop</h3>
+		
+		<div>
+			<img src="images/ScreenshotDesktop.png" height="300" >
+		
+		</div>
+		<br>
+		<p>
+			Nella versione desktop il carro armato si sposta usando i tasti W, A, S e D. Essi servono rispettivamente per far andare 
+			il carro armato avanti, a sinistra, indietro e a destra. Inoltre, i tasti A e D risultano non attivi se il carro &egrave; fermo,
+			in quanto per la rotazione dello stesso serve anche andare avanti o indietro come nel mondo reale.
+		</p>
+		
+		<p>
+			Nell'interfaccia poi sono presenti 4 tasti e 3 sliders:
+			<ul>
+				<li>Sotto alla barra dello status, che indica in ogni momento lo stato
+					del carro armato e il numero di bandiere che ha catturato, sono posizionati i 4 bottoni. Essi servono per aumentare o diminuire
+					la porzione di campo da gioco inquadrata dalla telecamera (Aumenta/Diminuisci cv), cambiare la telecamera da anteriore a posteriore
+					o viceversa (Cambia camera) oppure per far ricominciare la partita dall'inizio senza dover ricaricare la pagina (Ricomincia partita).</li>
+				<br>
+				<li>Al di sotto dei 4 bottoni sono posizionati 3 sliders, che servono a per spostare la fonte luminosa in 3 direzioni differenti 
+					per gestire l'illuminazione della scena. Il primo slider serve per spostare la fonte luminosa a sinistra o a destra, il secondo
+					per spostarla in alto o in basso e il terzo per spostarla avanti o indietro.</li>
+				
+			</ul> 
+			<br>
+		</p>
+		
+		<p>
+			Infine, &egrave; possibile usare il drag del mouse per spostare la telecamera e avere una visione pi&ugrave; globale del campo da gioco. 
+			Telecamera che poi tornera allo stato precedente al momento del rilascio del mouse.
+		</p>
+		
+		<br>
+		<h3>Versione Mobile</h3>
+		<div>
+			<img src="images/ScreenshotMobile.png" height="300" >
+		</div>
+		<br>
+		<p>
+			Nella versione mobile l'interfaccia diventa pi&ugrave; snella, e creando degli appositi bottoni a destra e sinistra del canvas
+			per gestire lo spostamento del caro armato. Sulla sinistra vi sono quindi i tasti per andare avanti (A) e indietro (R), mentre
+			sulla destra i tasti per andare a sinistra (Sx) e a destra (Dx). Come nella versione desktop, per girare il carro armato diverse
+			essere in movimento, e ci&ograve; implica quindi che vengano premuti contemporaneamente sullo schermo sia un tasto di movimento 
+			che uno di rotazione dello sterzo.
+		</p>
+		<p>		
+			Inoltre, un solo bottone dell'interfaccia desktop &egrave; presente anche nella versione mobile: il tasto per ricominciare la partita,
+			posto alla destra del canvas. Infine, &egrave; stata mantenuta anche la barra che descrive lo stato attuale del tank e della partita, 
+			posta al di sopra del canvas. 
+		</p>
+		<br>
+		<br>
+		<h2>Conclusioni e miglioramenti futuri</h2>
+		<br>
+		<p>
+			Il gioco risulta ben fruibile sia da desktop che da mobile, e la sua interazione &egrave; semplice e intuitiva. Vi sono poi anche 
+			alcune funzionalit&agrave; da migliorare o da aggiungere per avere un gioco pi&ugrave; completo e interattivo. 
+		</p>
+		<p>
+			In particolare, a livello back-end, si potrebbe migliorare la funzione di <i>draw</i>, inserendola ad esempio in un 
+			loop cos&igrave; da ricreare a grandi linee ci&ograve; che viene definito 'motore grafico' e alleggerire il carico di 
+			lavoro della GPU. Inoltre, a livello di gestione delle collisioni si potrebbero inserire le coordinate degli oggetti di 
+			scena all'interno della logica del carro armato, cos&igrave; da evitare che vi passi attraverso. 
+		</p>
+		<p>
+			A livello invece di front-end e renderizzazione della scena, sicuramente andrebbe rivista la gestione
+			della luce e delle ombre, mal gestite in questa versione. Per quanto riguarda l'interfaccia invece, potrebbero essere aggiunti
+			degli sliders o dei tasti per permettere all'utente maggiori interazioni o migliorare la gestione della telecamera,
+			sia in versione desktop che mobile.
+			
+
+		</p>
+		<br>
+	
+	</body>
