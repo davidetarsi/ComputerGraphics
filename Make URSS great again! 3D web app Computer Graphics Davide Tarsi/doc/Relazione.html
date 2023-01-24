@@ -1,0 +1,274 @@
+
+<!doctype html>
+<html>
+	<head>
+		<title>Make URSS great again!</title>
+		<style>
+			h1 {
+				color: rgb(190, 6, 18);
+				font-size: 50px;
+			}
+			h1, h2, h3 {
+				position: relative;
+				text-align: center;
+				color: rgb(190, 6, 18);
+			}
+			p, ul, li {
+				margin-left: 20px;
+				margin-right: 20px;
+				font-size: 21px;
+			}
+			body {
+			  background-color: rgb(34, 34, 34);
+              color: rgb(235, 232, 232);
+			}
+			div {
+				width:100%;
+				display: flex;
+				justify-content: center;
+			}
+			img {
+				margin: 5px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h1>Make URSS great again!</h1>
+		<h2>Progetto di esame per il corso di Fondamenti di Computer Graphics</h2>
+		<h3>Davide Tarsi, matricola 1060959</h3>
+		
+		<div>
+			<img src="images/Introduzione.png" height="400" >
+		</div>
+		
+		<br>
+		<h2>Introduzione </h2>
+		<p>
+			Quando la minaccia del Covid-19 sembrava ormai superata, a sconvolgere le vite e le economie europee &egrave; arrivata l'invasione 
+			Russa dell'Ucraina, iniziata nel febbraio 2022. Quando ancora gli strascichi della recente pandemia erano ancora visibili nella
+			quotidianità di tutti, un altra preoccupazione si è affacciata alle porte dell'Unione Europea. <br>Politologi, economisti e sociologi
+			hanno cominciato a chiedersi il perchè di questa scelta, forse azzardata, del presidente russo Vladimir Putin, senza trovare un 
+			vero punto di accordo comune. Ma col passare del tempo il suo obiettivo si è mostrato sempre più chiaro agli occhi di tutti:
+			voler ricreare l'Unione Sovietica! In questa simulazione sarà possibile perseguire questa volontà, per tornare grandi come ai tempi
+			di Gorbacev e le Soyuz.
+			</br>
+			
+		</p>
+		<p>
+			Lo scopo del gioco è di conquistare le bandiere degli ex paesi satellite dell'Unione Sovietica spostandosi con il carro armato
+			nella mappa di gioco. Le bandiere da conquistare sono tre (quella bielorussa, quella ucraina e quella kazaka) e non saranno tutte e 
+			tre visibili contemporaneamente: ad ogni conquista infatti la bandiera successiva verrà generata e posizionata in maniera casuale 
+			nella scena di gioco. Per conquistare una bandiera è sufficiente passarci sopra con il carro armato dato in dotazione. <br>
+			Ma attenzione! Ci sono anche bandiere da evitare, che se catturate portano in automatico alla morte, 
+			in quanto okay l'Ucraina, ma un paese NATO no eh!. La scena inoltre sarà arricchita anche da alcuni edifici per rendere 
+			più difficile la raccolta delle bandiere e in ultimo, bisogna anche stare attenti a non uscire dalla plancia di gioco,
+			cosa che comporterebbe la morte (e l'abbandono di ogni sogno di rinascita dell'Unione Sovietica).
+		</br>
+		</p>
+		<br>
+		<br>
+		<h2>Ambiente di gioco</h2>
+		
+		<div>
+			<img src="images\map2.jpg" height="300" >
+			<img src="images\Ambiente.png" height="300" >
+		
+		</div>
+		
+		<p>
+			Per realizzare l'ambientazione si è partito dalla creazione della mappa di gioco, che risulta essere un piano su cui
+			è stata applicata una texture che ricorda le ambientazioni di giochi di ruolo fantasy o del famoso gioco Risiko. <br>
+			Successivamente, al piano di gioco sono stati aggiunti degli oggetti obj wavefront che rappresentano degli edifici,
+			alcuni dei quali che richiamano alla rinascita della Russia post caduta del muro di Berlino e al suo avvicinamento
+			agli standard architettonici occidentali, altri invece che richiamano alla vecchia Russia sovietica, con i suoi edifici
+			essenziali e spartani. </br>
+			Sono state poi applicate delle texture ad ogni oggetto, per rendere il tutto più realistico, 
+			nonostante comunque per ottenere il massimo del realismo si sarebbero dovute applicare numerose texture ad ogni oggetto,
+			cosa non fatta per mantenere la semplicità a scapito della resa. <br>
+			In seguito, sono stati aggiunti altri due oggetti obj wavefront, opportunamente texturati, per creare la plancia di gioco
+			tridimensionale e un ideale tavolo su cui essa è appoggiata, di dimensioni maggiori.
+			Infine, è stato creato un cubo che delimitasse lo spazio attorno al tavolo e desse dei limiti spaziali alla scena, poi 
+			corredato da una texture che ricorda il cielo. </br>
+
+
+		</p>
+
+		<h2>Oggetti e mesh 3D</h2>
+		<div>
+			<img src="images\carro.png" height="300" >
+			<img src="images\carro2.png" height="300" >
+
+		</div>
+		<p>
+			Nella scena sono presenti diversi oggetti che interagiscono tra di loro. Essi sono importati da file obj wavefront,
+			reperiti principalmente online e modificati opportunamente per poter essere usati nel gioco. La modifica principale che è
+			stata effettuata via Blender agli oggetti obj è stata quella legata all'origine degli stessi, spesso non centrata oppure 
+			non centrata rispetto alla nuova configurazione dell'oggetto, alleggerito da elementi superflui, come ad esempio nel caso
+			del carro armato. Infatti, nel gioco si impersonifica un carro amrato t-90 (di produzione russa dal 1993), il cui modello 
+			più fedele reperibile online presentava nello stesso file obj wavefront tre istanze diverse dello stesso carro armato, ognuna
+			con una diversa texture a disposizione in base allo scenario di utilizzo dello stesso, e che aveva l'origine centrata
+			sulla punta della torretta. Per poterlo utilizzare nel gioco, è stato necessario eliminare le due istanze superflue e
+			centrare l'origine dell'oggetto sulla base del carro armato, in modo da poterlo posizionare in maniera corretta nella scena.
+			Una procedura simile poi è stata seguita per poter posizionare correttamente le bandiere e gli edifici nella scena.
+			Infine, questi oggetti vengono importati nel gioco attraverso la funzione <i>loadDoc</i> presente nella cartella <i>utils.js</i>.
+			I loro buffer vengono poi caricati nell'array <i>objectsToDraw</i> dalla funzione <i>loadAllModels</i> nel file
+			<i>objectLoader.js</i> assieme alle informazioni sulla texture da applicare, per poi essere disegnati dalle varie funzioni 
+			<i>draw</i> presenti nel file <i>ObjectDrawer.js</i> e dalla funzione <i>drawScene</i> presente in <i>main.js</i>
+		</p>
+		
+		<h2> Texture</h2>
+
+		<div>
+			<img src="images\texture.png" height="300" >
+			<img src="images\texture2.png" height="300" >
+		</div>
+
+		<p>
+			Ad ogni oggetto della scena viene applicata una texture, per rendere la resa più realistica. Esse vengono caricate nell'array
+			<i>textures</i> attraverso la funzione <i>loadTextures</i> presente in <i>utils.js</i> e poi caricate in <i>objectsToDraw</i> 
+			assieme alle mesh degli oggetti. Le texture vengono così applicate agli oggetti seguendo la tecnica cosiddetta "mipmap" 
+			o attraverso dei parametri di default se non adatte a seguire tale tecnica. Nel dettaglio, la texture del carro armato risulta
+			essere la vera mimetica del veicolo quando utilizzato in ambienti con scarsa vegetazione, mentre quella delle bandiere è semplicemente
+			l'immagine della bandiera dello stato di riferimento. Inoltre, le texture degli edifici sono stati scelti per ricordare
+			degli edifici della Russia degli anni 2000. Infine, la texture con l'immmagine dell'autore del progetto è stata applicata ad un
+			piano posto in corrispondenza del muro dell'edificio più basso della scena, come fosse un graffito su tale muro.
+
+
+		</p>
+		
+		<h2>Illuminazione</h2>
+		
+		<div>
+			<img src="images\Cattura.PNG" height="200" >
+			<img src="images\Cattura8.PNG" height="200" >
+			<img src="images\Cattura9.PNG" height="200" >
+			<img src="images\Cattura6.PNG" height="200" >
+		</div>
+		
+		<p>	
+			Per illuminare il mondo, è stata posta una luce sulla sommità del cubo in modo da simulare la presenza del sole.
+			Tale luce è costruita come una luce direzionale che, colpendo gli oggetti, grazie ad una depth_texture (che sfrutta 
+			le coordinate di profondità), è in grado di determinare quali oggetti siano in ombra e quali no.
+			Si è poi stabilito un bias fisso che limiti il cosiddetto effetto "shadow acne", per quanto possibile.
+			<br><br>
+			Il problema principale di questo tipo di illuminazione sono le ombre: esse risultano pixelate sia sugli oggetti, 
+			sia nella loro proiezione prospettica sul piano, rendendo il risultato complessivo accettabile, ma di bassa qualità. 
+			Una possibile miglioria da applicare sarebbe quella di individuare un algoritmo di Shading adeguato che possa 
+			ammorbidire i contorni delle ombre e renderle più gradevoli e realistiche.
+		</p>
+		<br>
+		<br>
+		<h2>Oggetti in movimento</h2>
+		
+		<div>
+			<img src="images\Cattura4.PNG" height="200" >
+			<img src="images\Cattura5.PNG" height="200" >
+			<img src="images\advert.jpg" height="200" >
+			<img src="images\front-pizza.jpg" height="200" >
+		</div>
+		
+		<p>	
+			Al contrario delle geometrie utilizzate per disegnare palazzi e simili, che sono fisse, nella scena ci sono 
+			anche degli oggetti in movimento, come il fantastico bolide delle consegne, che per ovvi motivi è color Rosso Ferrari.
+			Con questo, ovviamente, si devono muovere anche le ruote e la pizza da consegnare al cliente.
+			Per spostarsi nell'ambiente, l'automobile utilizza alcune implementazioni di fisica elementare legate al moto, 
+			estrapolate dal file cg-car2.js fornitoci a lezione.
+			<br><br>
+			Come detto prima, gestendo l'obj come un unico oggetto, non è possibile allo stato attuale rendere i vetri
+			dell'auto in modo differente rispetto alla carrozzeria. Per questo motivo, grazie all'utilizzo di Blender, 
+			è stato possibile separare il parabrezza, il lunotto posteriore e i finestrini laterali dalla mesh originale, 
+			per poi renderli graficamente come due oggetti distinti.
+			Con questo escamotage, che non è sicuramente il modo migliore di gestire il problema (ma visivamente funziona),
+			basta applicare le stesse matrici di trasformazione alle due geometrie affinché appaiano come un unico elemento, 
+			ottenendo l'effetto desiderato.
+			<br><br>
+			Un'ultima cosa che vale la pena sottolineare riguardo all'automobile è che sul suo tettuccio sono stati aggiunti 
+			due piani che rappresentano i cartelloni pubblicitari della pizzeria. 
+			Su questi cartelloni, è presente anche la foto dell'autrice, evidente amante della pizza.
+			Una problematica riscontrata riguardo a questi ultimi concerne l'illuminazione: una volta inseriti i piani 
+			e posizionati correttamente sull'auto, indipendentemente da come si spostasse l'auto, questi rimanevano
+			sempre completamente neri, probabilmente perché la direzione della luce non riusciva mai a colpirli completamente.
+			Per questo motivo, si è scelto di renderli graficamente in modo indipendente dalla luce.			
+		</p>
+		<br>
+		<br>
+		<h2>Interazione con l'interfaccia</h2>
+		
+		<p>
+			All'utente sono permesse diverse azioni, fruibili sia su pc sia su mobile.
+			Principalmente l'interfaccia si presenta con una canvas in cui si vede l'ambientazione e con cui si può 
+			interagire in diversi modi:
+		</p>	
+			<ul>
+				<li>Attraverso la tastiera</li>
+				<li>Attraverso il mouse</li>
+				<li>Attraverso il touchscreen (nel caso mobile)</li>
+			</ul>
+		<h3>Versione Desktop</h3>
+		
+		<div>
+			<img src="images\Cattura1.PNG" height="300" >
+			<img src="images\Cattura2.PNG" height="300" >
+		</div>
+		<p>
+			In questa versione del gioco per far muovere l'automobile è necessario utilizzare la tastiera nel 
+			seguente modo:
+		</p>
+		<ul>
+			<li>Tasto W: acceleratore in avanti</li>
+			<li>Tasto S: acceleratore in retromarcia</li>
+			<li>Tasto A: rotazione a sinistra dello sterzo</li>
+			<li>Tasto D: rotazione a destra dello sterzo</li>
+			<li>Barra Spaziatrice: consegna della pizza</li>
+		</ul>
+		<p>
+			Da notare che l'automobile in sé non può ruotare semplicemente girando il volante (e di conseguenza lo sterzo 
+			delle ruote), ma è necessario usare contemporaneamente l'acceleratore, come nel mondo reale.
+			Per questo motivo bisogna tenere premuto nello stesso momento uno dei due tasti W o S.
+			<br>
+			La barra spaziatrice si può sempre premere, tuttavia la pressione del tasto avrà effetto solamente se l'auto si 
+			troverà all'interno dell'area della consegna. Questo è obbligatorio perché il meccanismo di teletrasporto 
+			utilizzato è altamente innovativo, ma essendo ancora in via sperimentale ha purtroppo un piccolo raggio d'azione.
+		</p>
+		<p>
+			In alto a destra sono presenti tre bottoni e quattro slider.
+			I bottoni permettono di aumentare/diminuire il fov, mentre il bottone "Change camera" permette di vedere ciò
+			che il fattorino vedrebbe dallo specchietto retrovisore, traslato leggermente in alto.<br>
+			Gli slider sono più che altro uno strumento di debug per lo sviluppatore, ma posso stuzzicare la curiosità anche
+			dei giocatori più nerd.
+			Essi infatti permettono di modificare il parametro D e la posizione della luce di cui si è parlato in
+			precedenza, vedendo in tempo reale che effetto hanno le modifiche sulle ombre se il sole è, ad esempio,
+			molto vicino all'orizzonte o molto vicino allo zenit.
+		</p>
+		<p>
+			Infine, per avere una visione più globale di dove si trova l'automobile, è possibile utilizzare il drag del 
+			mouse per modificare la visuale. L'utilizzo di questo tipo di funzione è temporaneo, ossia, non appena verrà 
+			rilasciato il mouse, si ritornerà alla visuale di default, che è quella che ci permette di vedere in che 
+			direzione sta andando l'auto.
+		</p>
+		
+		<br>
+		<h3>Versione Mobile</h3>
+		<div>
+			<img src="images\Cattura7.jpeg" height="300" >
+		</div>
+		<p>
+			Siccome su mobile non si può utilizzare la tastiera durante il gioco, sulla sinistra della canvas sono stati posti
+			due bottoni che permettono la rotazione dell'automobile a destra e a sinistra.
+			Come detto sopra, l'automobile in sé non può ruotare semplicemente girando il volante, per cui è necessario tenere 
+			premuto nello stesso momento uno degli altri due bottoni situati a destra della canvas, che rappresentano 
+			l'accelerazione in avanti o in retromarcia. <br>
+			La posizione di questi quattro bottoni è stata quindi scelta apposta per fare in modo che il giocatore possa
+			impugnare lo smartphone e utilizzare i pollici di entrambe le mani, come fosse un joystick di una console di gioco.
+		</p>
+		<p>		
+			Per la consegna della pizza è poi stato creato un ulteriore bottone, che sarà sempre possibile premere, ma che avrà
+			effetto solamente una volta giunti all'interno dell'area di consegna.
+			<br>Infine, per la funzione di visualizzazione che nella versione desktop si può avere usando il drag del mouse,
+			al momento non è implementata ma si potrebbe utilizzare il multi-touch dello smartphone come se fosse il puntatore.
+		</p>
+		
+		
+	
+	</body>
